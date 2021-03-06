@@ -20,8 +20,10 @@ class App {
     this.app.use('/app', router)
       .use('/details', (req, res) => {
         res.status(200).json({
+          version: process.env.npm_package_version,
           author: process.env.npm_package_author_name,
-          version: process.env.npm_package_version
+          email: process.env.npm_package_author_email,
+          repositoryUrl: process.env.npm_package_repository_url
         })
       })
   }

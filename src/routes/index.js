@@ -1,4 +1,5 @@
 import express from 'express'
+import swaggerUi from 'swagger-ui-express'
 
 class Routes {
   constructor () {
@@ -8,9 +9,7 @@ class Routes {
   }
 
   setRoutes () {
-    this.router.use('/', (req, res) => {
-      res.status(200).send('teste')
-    })
+    this.router.use('/swagger-ui', swaggerUi.serve, swaggerUi.setup('../../docs/swagger_output.json'))
   }
 }
 
