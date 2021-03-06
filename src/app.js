@@ -17,7 +17,13 @@ class App {
     this.app.use(morgan('tiny'))
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
-    this.app.use(router)
+    this.app.use('/app', router)
+      .use('/details', (req, res) => {
+        res.status(200).json({
+          author: process.env.npm_package_author_name,
+          version: process.env.npm_package_version
+        })
+      })
   }
 }
 
