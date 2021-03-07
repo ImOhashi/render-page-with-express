@@ -1,5 +1,4 @@
 import express from 'express'
-import swaggerUi from 'swagger-ui-express'
 
 class Routes {
   constructor () {
@@ -9,7 +8,17 @@ class Routes {
   }
 
   setRoutes () {
-    this.router.use('/swagger-ui', swaggerUi.serve, swaggerUi.setup('../../docs/swagger_output.json'))
+    this.router.use('/teste', (req, res) => {
+      res.status(200).send('teste')
+    })
+      .get('/details', (req, res) => {
+        res.status(200).json({
+          version: process.env.npm_package_version,
+          author: process.env.npm_package_author_name,
+          email: process.env.npm_package_author_email,
+          repositoryUrl: process.env.npm_package_repository_url
+        })
+      })
   }
 }
 
