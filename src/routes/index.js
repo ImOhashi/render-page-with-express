@@ -1,5 +1,7 @@
 import express from 'express'
 
+import path from 'path'
+
 class Routes {
   constructor () {
     this.router = express.Router()
@@ -8,8 +10,8 @@ class Routes {
   }
 
   setRoutes () {
-    this.router.use('/teste', (req, res) => {
-      res.status(200).send('teste')
+    this.router.get('/', (req, res) => {
+      res.sendFile(path.resolve('./view/index.html'))
     })
       .get('/details', (req, res) => {
         res.status(200).json({
